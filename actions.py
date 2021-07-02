@@ -6,18 +6,21 @@ if TYPE_CHECKING:
     from engine import Engine
     from entity import Entity
 
+
 class Action:
-    def perform(self, engine: Engine, entity) -> None:
+    def perform(self, engine: Engine, entity: Entity) -> None:
         """Perform this action with the actions needed to determine its scope
         `engine` is the scope this action is being performed in
         `entity` is object performing this action
-        this action must be overriden by Action subclass
+        this action must be overridden by Action subclass
         """
         raise NotImplementedError()
 
+
 class EscapeAction(Action):
-    def perform(self, engine: Engine, entity) -> None:
+    def perform(self, engine: Engine, entity: Entity) -> None:
         raise SystemExit()
+
 
 class MovementAction(Action):
     def __init__(self, dx: int, dy: int):
@@ -26,7 +29,7 @@ class MovementAction(Action):
         self.dx = dx
         self.dy = dy
 
-    def perform(self, engine: Engine, entity) -> None:
+    def perform(self, engine: Engine, entity: Entity) -> None:
         dest_x = entity.x + self.dx
         dest_y = entity.y + self.dy
 

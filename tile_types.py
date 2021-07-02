@@ -1,6 +1,6 @@
 from typing import Tuple
 
-import numpy as np # type: ignore
+import numpy as np  # type: ignore
 
 # Tile graphics structured type compatible with Console.tiles_rgb
 graphic_dt = np.dtype(
@@ -20,14 +20,16 @@ tile_dt = np.dtype(
     ]
 )
 
+
 def new_tile(
-        *, # enforce the use of keywords, so param order does not matter
+        *,  # enforce the use of keywords, so param order does not matter
         walkable: int,
         transparent: int,
         dark: Tuple[int, Tuple[int, int, int], Tuple[int, int, int]],
 ) -> np.ndarray:
     """Helper function for defining individual tile types"""
     return np.array((walkable, transparent, dark), dtype=tile_dt)
+
 
 floor = new_tile(
     walkable=True, transparent=True, dark=(ord(" "), (255, 255, 255), (50, 50, 150))
